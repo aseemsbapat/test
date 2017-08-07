@@ -1,0 +1,128 @@
+package mpv2101;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+public class MPV2101 {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\selenium-java-3.4.0\\chromedriver\\chromedriver.exe");
+		WebDriver d = new ChromeDriver();	
+		Actions act = new Actions (d);
+		d.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		d.get("http://161.202.19.190:4701/login");
+		d.manage().window().maximize();
+		Thread.sleep(3000);
+		
+		
+		// initial login
+		
+		
+		WebElement email = d.findElement (By.id("email"));
+		email.sendKeys("abapat+6@instarem.com");
+		Thread.sleep(1000);
+		WebElement password = d.findElement(By.id("password"));
+		password.sendKeys("Welcome@1");
+		Thread.sleep(1000);
+		WebElement dynamiccode = d.findElement(By.id("generateAccessCode"));	
+		dynamiccode.click();
+		Thread.sleep(3000);
+		WebElement accesscode =d.findElement(By.id("accessCode"));
+		accesscode.sendKeys("123456");
+		Thread.sleep(1000);
+		WebElement firstsubmitbutton =d.findElement(By.id("submit"));
+		firstsubmitbutton.click();
+		Thread.sleep(4000);
+		
+		// steps to go to transactions
+		
+		WebElement transactions =d.findElement(By.xpath(".//*[@id='nav-menu']/li[2]/a"));
+		Thread.sleep(3000);
+		Action 	 act1 = act.moveToElement(transactions)
+				.click()
+				.build();
+	    Thread.sleep(3000);
+	    act1.perform();
+        Thread.sleep(3000);
+        WebElement uploadtransaction =d.findElement(By.xpath(".//*[@id='transactions']/li[4]/a/span"));
+        Action act2 = act.moveToElement(uploadtransaction)
+				.click()
+				.build();
+		 Thread.sleep(3000);
+	        act2.perform();
+	    Thread.sleep(3000);
+	    WebElement client =d.findElement(By.xpath(".//*[@id='upload_client_chosen']/a/span"));	
+        client.click();
+        List<WebElement> listofclient =d.findElements(By.tagName("li"));
+        for (WebElement li : listofclient) {
+			if (li.getText().equals("Aseem Label")) {
+			     li.click();
+			   }
+			}
+        
+        // upload file section
+        
+        WebElement uploadelement =d.findElement(By.xpath(".//*[@id='upload']/div/div[4]/div/div[1]/div[1]/form/input[3]"));
+        uploadelement.sendKeys("C:\\Users\\admin\\Desktop\\Batch Files from Prassana\\batch_format-HKD-3.xlsx");
+        Thread.sleep(3000);
+		WebElement uploadexcelbutton = d.findElement(By.xpath(".//*[@id='upload-excel']"));
+		uploadexcelbutton.click();
+        //upload file section finished 
+		
+		Thread.sleep(3000);
+		
+		// approving batch file
+		
+		d.get("http://161.202.19.190:4701/transactions/batchapproval");
+		/*WebElement transactions2 =d.findElement(By.xpath(".//*[@id='nav-menu']/li[2]/a"));
+		Thread.sleep(3000);
+		Action 	 act3 = act.moveToElement(transactions2)
+				.click()
+				.build();
+	    Thread.sleep(3000);
+	    act3.perform();
+        Thread.sleep(3000);
+        WebElement batchapproval = d.findElement(By.xpath(".//*[@id='transactions']/li[5]/a/span"));
+        batchapproval.click();
+        Thread.sleep(3000);*/
+        WebElement stage1approve = d.findElement(By.xpath(".//*[@id='approvalListTable']/tbody/tr[1]/td[9]/a[1]"));
+        stage1approve.click();
+        Thread.sleep(4000);
+        WebElement stage2approve = d.findElement(By.xpath(".//*[@id='approvalListTable']/tbody/tr[1]/td[11]/a[1]"));
+        stage2approve.click();
+        
+		
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+               
+        
+		
+	}
+
+}
