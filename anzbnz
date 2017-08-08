@@ -1,0 +1,87 @@
+package payment;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+public class Payment {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		System.setProperty("webdriver.chrome.driver","C:\\selenium-java-3.4.0\\chromedriver\\chromedriver.exe");
+		WebDriver d = new ChromeDriver();
+		Actions act = new Actions(d);
+	 	d.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		d.get("http://staging.instarem.com");
+		d.manage().window().maximize();
+		Thread.sleep(9000);
+		WebElement login = d.findElement(By.xpath (".//*[@id='aSignIn']"));
+		login.click();
+		Thread.sleep(3000);
+		WebElement email = d.findElement(By.xpath(".//*[@id='UserName']"));
+		email.sendKeys("hkuser@instarem.com");
+		WebElement pwd = d.findElement(By.xpath(".//*[@id='Password']"));
+		pwd.sendKeys("Abc@123");
+		WebElement login1 = d.findElement(By.xpath(".//*[@id='InstaValidate']"));
+		login1.click();
+		WebElement sof =d.findElement(By.id("sourceoffund"));
+		sof.click();
+		WebElement som = d.findElement(By.xpath(".//*[@id='mCSB_1_container']/li[1]/a"));
+		som.click();
+		//WebElement hkd = d.findElement(By.xpath(".//*[@id='txtSendAmount']"));
+		//hkd.clear();
+		//hkd.click();
+		//hkd.sendKeys("1500");
+		Thread.sleep(3000);
+		WebElement submit =d.findElement(By.id("transSubmit"));
+		submit.click();
+		WebElement firstname = d.findElement(By.xpath(".//*[@id='txtFirstName']"));
+		firstname.sendKeys("Test");
+		WebElement lastname = d.findElement(By.xpath(".//*[@id='txtLastName']"));
+		lastname.sendKeys("last name");
+		WebElement email2 = d.findElement(By.xpath(".//*[@id='txtEmail']"));
+		email2.sendKeys("xyz@instarem.com");
+		WebElement state = d.findElement(By.xpath(".//*[@id='ddlstatePayee']/a"));
+		state.click();
+		WebElement state2 = d.findElement(By.xpath(".//*[@id='mCSB_2_container']/li[2]/a"));
+		state2.click();
+		WebElement city = d.findElement(By.xpath(".//*[@id='Payeecity']"));
+		city.sendKeys("MUMBAI");
+		WebElement streetaddress = d.findElement(By.xpath(".//*[@id='PayeeAddress']"));
+		streetaddress.sendKeys("this is a test adress");
+		WebElement postcode = d.findElement(By.xpath(".//*[@id='PayeePostCode']"));
+		postcode.sendKeys("1234");
+		WebElement mono = d.findElement(By.xpath(".//*[@id='txtMobile']"));
+		mono.sendKeys("1234567890");
+		WebElement relationship = d.findElement(By.id("fromLink"));
+		relationship.click();
+		WebElement relationship1 = d.findElement(By.xpath(".//*[@id='mCSB_2_container']/li[1]/a"));
+		relationship1.click();
+		WebElement ifsc = d.findElement(By.xpath(".//*[@id='txtIFSC']"));
+		ifsc.click();
+		ifsc.sendKeys("SBIN0000001");
+		Thread.sleep(3000);
+		WebElement accno = d.findElement(By.xpath(".//*[@id='txtAccntNo']"));
+		accno.sendKeys("1111112222");
+		WebElement accno2 = d.findElement(By.xpath(".//*[@id='txtReAccntNo']"));
+		accno2.sendKeys("1111112222");
+		WebElement purpose = d.findElement(By.id("PurposeCode"));
+		purpose.click();
+		WebElement purpose1 = d.findElement(By.xpath(".//*[@id='mCSB_3_container']/li[1]/a"));
+		purpose1.click();
+	}
+
+}
