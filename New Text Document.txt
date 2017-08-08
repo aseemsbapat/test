@@ -1,0 +1,59 @@
+//Select obj = new Select(d.findElement(By.xpath(".//*[@id='ddlstatePayee']/a")));
+		//obj.selectByValue("15");
+
+
+
+
+WebElement state = d.findElement(By.id("ddlstatePayee"));
+		state.click();
+		WebElement state2 = d.findElement(By.xpath(".//*[@id='mCSB_3_container']/li[15]/a"));
+		state2.click();
+
+
+
+
+((RemoteWebDriver)d).executeScript("arguments[0].scrollIntoView(true);", state);
+		WebElement state2 = d.findElement(By.xpath(".//*[@id='mCSB_3_container']/li[15]/a"));
+		state2.click();
+
+
+
+
+
+
+//WebElement payee = d.findElement(By.xpath(".//*[@id='ddlPayeeSelection']"));
+		//payee.click();
+		//Thread.sleep(2000);
+		//WebElement payee2 = d.findElement(By.xpath(".//*[@id='mCSB_4_container']/li[1]/a"));
+		//payee2.click();
+
+
+with li tags method 
+//WebElement payee = d.findElement(By.id("ddlPayeeSelection"));
+	//List<WebElement> payeelist=payee.findElements(By.tagName("li"));
+	//for (WebElement li : payeelist) {
+		//if (li.getText().equals("SWETA BHATT - ICICI BANK LIMITED")) {
+		  //   li.click();
+		   //}
+		//}
+
+
+Country selection
+
+d.findElement(By.id("toPayeeLink")).click();
+				act2.moveToElement(d.findElement(By.id("toPayeeLink"))).build().perform();
+				Thread.sleep(1000);
+				List<WebElement> country1 =d.findElements(By.tagName("li"));
+				for (WebElement li : country1) {
+					if (li.getText().equals("SINGAPORE")) {
+					     li.click();
+					   }
+					}
+		 Thread.sleep(9000);
+
+Bank selection
+
+WebElement bankname = d.findElement(By.xpath(".//*[@id='txtBank']"));
+			bankname.click();
+			bankname.sendKeys("Bank Of Singapore");
+			Thread.sleep(1000)
