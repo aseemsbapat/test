@@ -1,0 +1,2 @@
+Client,Beneficiary Name,Transaction #,Bank Confirmaton ID,Transaction ID,Destination Currency,Destination Amount,Local Conversion Currency,Batch,Status,USD Value,Uploaded Date,Stage_2_Approved,Compliance Cleared,PG_PROCESSING,MANUAL_PG,SENT_TO_BANK,Error-Sub Status,Error Description,Paid,Returned,Cancelled
+Aseem Label,PairTest,CXX97,PY10116638,1501490260221ooo,AUD,10,,batch_format_CC Pair Test-1.xlsx,Paid,7.92,25/07/2017 10:54:19,25/07/2017 10:54:54,25/07/2017 10:57:19,25/07/2017 10:57:19,25/07/2017 10:57:19,31/07/2017 08:38:16,,,31/07/2017 08:38:35,,
