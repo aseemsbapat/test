@@ -1,39 +1,25 @@
 <?php
 
 /**
- * Validates the HTML type length (not to be confused with CSS's length).
- * 
- * This accepts integer pixels or percentages as lengths for certain
- * HTML attributes.
+ * Class for handling width/height length attribute transformations to CSS
  */
-
-class HTMLPurifier_AttrDef_HTML_Length extends HTMLPurifier_AttrDef_HTML_Pixels
+class HTMLPurifier_AttrTransform_Length extends HTMLPurifier_AttrTransform
 {
     
-    public function validate($string, $config, $context) {
-        
-        $string = trim($string);
-        if ($string === '') return false;
-        
-        $parent_result = parent::validate($string, $config, $context);
-        if ($parent_result !== false) return $parent_result;
-        
-        $length = strlen($string);
-        $last_char = $string[$length - 1];
-        
-        if ($last_char !== '%') return false;
-        
-        $points = substr($string, 0, $length - 1);
-        
-        if (!is_numeric($points)) return false;
-        
-        $points = (int) $points;
-        
-        if ($points < 0) return '0%';
-        if ($points > 100) return '100%';
-        
-        return ((string) $points) . '%';
-        
+    protected $name;
+    protected $cssName;
+    
+    public function __construct($name, $css_name = null) {
+        $this->name = $name;
+        $this->cssName = $css_name ? $css_name : $name;
+    }
+    
+    public function transform($attr, $config, $context) {
+        if (!isset($attr[$this->name])) return $attr;
+        $length = $this->confiscateAttr($attr, $this->name);
+        if(ctype_digit($length)) $length .= 'px';
+        $this->prependCSS($attr, $this->cssName . ":$length;");
+        return $attr;
     }
     
 }
